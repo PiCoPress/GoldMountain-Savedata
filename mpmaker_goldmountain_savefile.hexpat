@@ -28,7 +28,7 @@ struct Money {
 
 struct Stub2 {
     s32 stub2_1;
-    s32 stub2_2;
+    s32 soulmoney; // Raw hex value != In-game display value (non 1:1 mapping)
     if(stub2_1 == 2) u16 equipped_costume;
     u8 stub2_3[10];
 };
@@ -56,9 +56,15 @@ struct ChunkList {
     Chunk ct1[chunk_size];
 };
 
-struct Stub4 {
-    s16 stub4_len;
-    s16 stub4_data[stub4_len];
+// It seems to have too many options
+enum DimensionOptions: u16 {
+    
+};
+
+struct DimensionToolsData {
+    s16 size;
+    DimensionOptions pickaxe[size / 2];
+    DimensionOptions record[size / 2];
 };
 
 struct Segment1 {
@@ -69,7 +75,7 @@ struct Segment1 {
     Stub3 stub3;
     
     ChunkList clt1;
-    Stub4 stub4;
+    DimensionToolsData dimdata;
     u8 barrier; // 0xFF
 };
 
