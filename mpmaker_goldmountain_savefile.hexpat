@@ -74,60 +74,60 @@ struct Segment1 {
 };
 
 enum ItemType: u32 {
-    DAILY_TICKET    = 0x0C,
-    ETERNAL_KEY     = 0x0D,
-    TRIAL_TICKET    = 0x0E,
+    ITEM_DAILY_PASS         = 0x0C,
+    ITEM_INFINITY_KEY       = 0x0D,
+    ITEM_TRIAL_PASS         = 0x0E,
     
-    NEW_BOOTS       = 0x33,
-    ENHANCED_BOOTS  = 0x34,
-    DASH_BOOTS      = 0x35,
+    ITEM_STuRDY_BOOTS       = 0x33,
+    ITEM_ENHANCED_BOOTS     = 0x34,
+    ITEM_WING_BOOTS         = 0x35,
     
-    WISE_STONE      = 0x65,
-    MIDAS_TOUCH     = 0x66,
-    BRIGHT_MINE     = 0x67,
-    UNLIMITED       = 0x68,
-    RUBBLE_FREE     = 0x69,
-    MINERAL_RADAR   = 0x6A,
-    COMPASS         = 0x6B,
-    TOKEN_OF_SOUL   = 0x6C,
-    RUSH_ATTACK     = 0x6E,
-    GIANT_SMITE     = 0x6F,
-    LUCKY_STRIKE    = 0x70,
-    SHADOW_FRIEND   = 0x71,
-    DREAMERSS       = 0x72,
-    TREASURE        = 0x73,
-    SECRET_KET      = 0x74,
-    SPECIAL_ID      = 0x75,
-    AUTO_VAULT      = 0x76,
-    HARDENED_ARMOR  = 0x78,
-    MINE_TNT        = 0x79,
-    ANALYSIS        = 0x7A,
+    ITEM_PHILOSOPHER_STONE  = 0x65,
+    ITEM_MIDAS_TOUCH        = 0x66,
+    ITEM_MAGIC_LANTERN      = 0x67,
+    ITEM_LIMIT_BREAK        = 0x68,
+    ITEM_RUBBLE_REMOVAL     = 0x69,
+    ITEM_MINERAL_RADAR      = 0x6A,
+    ITEM_COMPASS            = 0x6B,
+    ITEM_SOUL_MEDAL         = 0x6C,
+    ITEM_RUSH_ATTACK        = 0x6E,
+    ITEM_STRIKE_GIANT       = 0x6F,
+    ITEM_LUCKY_BLOW         = 0x70,
+    ITEM_SHADOW_FRIEND      = 0x71,
+    ITEM_MEM_OF_DREAMER     = 0x72,
+    ITEM_TREASURE_MAP       = 0x73,
+    ITEM_SECRET_KEY         = 0x74,
+    ITEM_SPECIAL_ID_CARD    = 0x75,
+    ITEM_AUTOMATIC_SAFE     = 0x76,
+    ITEM_STURDY_COAT        = 0x78,
+    ITEM_MINE_BOMB          = 0x79,
+    ITEM_ANALYSIS_HISTORY   = 0x7A,
     
-    AWAKENING       = 0xDF,
-    TOKEN_OF_SEAL   = 0xE0,
+    ITEM_ENGRAVE_AWAKENING  = 0xDF,
+    ITEM_ENGRAVING_MEDAL    = 0xE0,
     
-    LEVEL_BOOST     = 0x12D,
-    REBIRTH_BOOST   = 0x12E,
-    REVIVAL         = 0x12F,
+    ITEM_LEVEL_BOOST_BOOK   = 0x12D,
+    ITEM_REBIRTH_BOOST      = 0x12E,
+    ITEM_REVIVAL_BOOK       = 0x12F,
     
-    CRYSTAL         = 0x130,
+    ITEM_CATALYST           = 0x130,
     
-    DIM_PICKAXE     = 0x192,
-    DIM_DEBRIS      = 0x193,
-    DIM_HISTORY     = 0x195,
-    DIM_HALMET      = 0x196,
+    ITEM_DIMENSION_PICKAXE  = 0x192,
+    ITEM_DIMENSION_DEBRIS   = 0x193,
+    ITEM_DIMENSION_RECORD   = 0x195,
+    ITEM_DIMENSION_HALMET   = 0x196,
     
-    MAX_LVL_TOKEN   = 0x1C4,
+    ITEM_COMPRESSION_MEDAL  = 0x1C4,
     
     
     
     COSTUME_DRILL   = 0x97,
     COSTUME_BIGHAND = 0x98,
-    COSTUME_GOLD    = 0x99,
+    COSTUME_GOLDEN  = 0x99,
     COSTUME_HAMMER  = 0x9A,
-    COSTUME_BOW     = 0x9B,
+    COSTUME_SNIPER  = 0x9B,
     COSTUME_SANTA   = 0x9C,
-    COSTUME_BEACH   = 0x9D,
+    COSTUME_SUMMER  = 0x9D,
     COSTUME_SHIELD  = 0x9E,
     COSTUME_NINJA   = 0x9F,
     COSTUME_PRISON  = 0xA0,
@@ -163,8 +163,8 @@ struct Settings {
 };
 
 enum StickControlType: u8 {
-    STATIC,
-    CLICKED,
+    FIXED,
+    FLOAT,
     DYNAMIC,
 };
 
@@ -198,18 +198,115 @@ struct Segment3 {
     s64 stub6_2;
 };
 
-enum CatalogType: u16 {
-     
+enum CollectionType: u16 {
+    ORE_STONE = 0x0,
+    ORE_BRONZE,
+    ORE_IRON,
+    ORE_SILVER,
+    ORE_GOLD,
+    ORE_PLATINUM,
+    ORE_EMERALD,
+    ORE_SAPPHIRE,
+    ORE_RUBY,
+    ORE_DIAMOND,
+    ORE_PINK_DIAMOND,
+    ORE_MYTHRIL,
+    ORE_ORICHALCUM,
+    ORE_ADAMANTIUM,
+    ORE_BLOODSTONE,
+    ORE_DARK_MATTER,
+    ORE_PYRITE,
+    ORE_LAPIS_LAZULI,
+    ORE_FINE_STONE,
+    ORE_MARBLE,
+    ORE_TRACES_OF_ARTIFACT,
+    ORE_EMERALD_SCARAB,
+    ORE_SARCOPHAGUS,
+    ORE_GOLDEN_MUSHROOM,
+    ORE_AMBER,
+    ORE_GOLDEN_APPlE_TREE,
+    ORE_SPIRIT_STONE,
+    ORE_BLUE_ICE,
+    ORE_CRYSTAL,
+    ORE_YETIS_FOOTPRINT,
+    ORE_CORE_OF_WINTER,
+    ORE_CORAL_REEF,
+    ORE_AQUAMARINE,
+    ORE_PEARL_SHELL,
+    ORE_BLACK_PEARL_SHELL,
+    ORE_SULFUR,
+    ORE_OBSIDIAN,
+    ORE_FLAME_CRYSTAL,
+    ORE_RED_SUNSTONE,
+    ORE_STARDUST,
+    ORE_LITTLE_PLANET,
+    ORE_LITTLE_SUN,
+    ORE_RAINBOW_STAR,
+    ORE_RUIN_BLOCK,
+    ORE_RUIN_WALL,
+    ORE_RUIN_PILLAR,
+    ORE_RELIC_CHEST,
+    ORE_INDICATOR_OF_TIME,
+    ORE_AKASHIC_RECORDS,
+    ORE_BREAK_OF_DIMENSION,
+    ORE_TIME_MACHINE,
+    ORE_CLOUD,
+    ORE_NIMBUS,
+    ORE_TORNADO,
+    ORE_ANCHIENT_EGG,
+    ORE_INFINITIUM,
+    ORE_ABYSS_STONE,
+    ORE_SOUL_TAR,
+    ORE_HELLFIRE,
+    ORE_DEATH_FLOWER,
+    ORE_DIMENSONLITE,
+    ORE_EXTRATERRESTRIAL_MATERIAL,
+    ORE_VISION_STONE,
+    ORE_SCRIPT,
+    ORE_CRYPTOCURRENCY,
+    ORE_TOP_SECRET,
+    
+    
+    
+    BOSS_MUD_GOLEM = 0X64,
+    BOSS_GOBLIN_KING,
+    BOSS_HUGE_SLIME,
+    BOSS_GOLDEN_WARRIOR,
+    BOSS_GEAR_GIANT,
+    BOSS_KRAKEN,
+    BOSS_ANCIENT_GOD,
+    BOSS_DIAMOND_SPIRIT,
+    BOSS_SPECTER_OF_TREE,
+    BOSS_GHOST_OF_OBLIVION,
+    BOSS_DARK_GRAGON,
+    BOSS_MIRAGE_TURRET,
+    BOSS_ABYSS_WATCHER,
+    BOSS_WYVERN_TWINS,
+    BOSS_DRAGON_LORD,
+    BOSS_GUARDIAN_OF_FOREST,
+    BOSS_CENTAUR,
+    BOSS_YETI,
+    BOSS_SHARK_SWARM,
+    BOSS_PIRATE_SKULL,
+    BOSS_RED_DEMON,
+    BOSS_FLAME_SPIRIT,
+    BOSS_CHAOS,
+    BOSS_PROVIDENCE,
+    BOSS_RUN_SENTINEL,
+    BOSS_UNSEALED_DESTROYER,
+    BOSS_TIME_REAPER,
+    BOSS_MINER,
+    BOSS_GILDED_GOBLIN,
 };
 
-struct Achievements {
-    CatalogType catalog_type;
+struct Collections {
+    CollectionType collection_type;
     s64 data;
 };
 
 struct Segment4 {
-    s16 ach_count;
-    Achievements ach[ach_count];
+    s16 collection_count;
+    Collections collection[collection_count];
 };
 
 struct Body {
