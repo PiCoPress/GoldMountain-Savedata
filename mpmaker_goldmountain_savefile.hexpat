@@ -4,79 +4,11 @@ import std.string;
 // This pattern is for the game GoldMountain,
 // which is developed by MPMaker
 
-struct Header {
-    u32 magic;
-    if(magic != 0x5354CA83) return;
-    u32 seg1_size;
-    //u16 *seg2_ptr: u8 @ seg1_size + 0x8;
-};
-
-struct Level {
-    s16 level_len;
-    
-    s32 power;
-    s32 speed;
-    s32 value;
-    
-    s32 stub1;
-};
-
-struct Money {
-    s32 money_len;
-    s16 money[money_len];
-};
-
-struct Stub2 {
-    s32 stub2_1;
-    s32 soulmoney; // Raw hex value != In-game display value (non 1:1 mapping)
-    if(stub2_1 == 2) u16 equipped_costume;
-    u8 stub2_3[10];
-};
-
-struct Stub3 {
-    u64 stub3_1;
-    u8 stub3_2[23];
-    
-    s64 stub3_3;
-    s16 stub3_4;
-    s64 stub3_5;
-};
-
-enum ChunkType: u8 {
-    
-};
-
-struct Chunk {
-    ChunkType idx;
-    s16 data;
-};
-
-struct ChunkList {
-    s16 chunk_size;
-    Chunk ct1[chunk_size];
-};
-
-// It seems to have too many options
-enum DimensionOptions: u16 {
-    
-};
-
-struct DimensionToolsData {
-    s16 size;
-    DimensionOptions pickaxe[size / 2];
-    DimensionOptions record[size / 2];
-};
-
-struct Segment1 {
-    Level level;
-    Money money;
-    
-    Stub2 stub2;
-    Stub3 stub3;
-    
-    ChunkList clt1;
-    DimensionToolsData dimdata;
-    u8 barrier; // 0xFF
+fn assert(str s, auto a, auto b) {
+    if(a != b) 
+        std::warning("[" + s + "] '" + 
+            std::string::to_string(a) + "' != " + 
+            std::string::to_string(b));
 };
 
 enum ItemType: u32 {
@@ -109,8 +41,35 @@ enum ItemType: u32 {
     ITEM_MINE_BOMB          = 0x79,
     ITEM_ANALYSIS_HISTORY   = 0x7A,
     
+    ITEM_SPEED_MEDAL        = 0xC9,
+    ITEM_POWER_MEDAL        = 0xCA,
+    ITEM_SKILL_MEDAL        = 0xCB,
+    ITEM_LEGACY_SNOW_MEDAL  = 0xCC,
+    ITEM_MUD_MEDAL          = 0xCD,
+    ITEM_GOLD_MEDAL         = 0xCE,
+    ITEM_DIAMOND_MEDAL      = 0xCF,
+    ITEM_DARK_MEDAL         = 0xD0,
+    ITEM_TRUE_POWER_MEDAL   = 0xD1,
+    ITEM_FOREST_MEDAL       = 0xD2,
+    ITEM_SEA_MEDAL          = 0xD3,
+    ITEM_TRUE_SPEED_MEDAL   = 0xD4,
+    ITEM_MAGMA_MEDAL        = 0xD5,
+    ITEM_SPACE_MEDAL        = 0xD6,
+    ITEM_RUIN_MEDAL         = 0xD7,
+    ITEM_TODAYS_MEDAL       = 0xD8,
+    ITEM_DESERT_MEDAL       = 0xD9,
+    ITEM_ICE_MEDAL          = 0xDA,
+    ITEM_TIME_MEDAL         = 0xDB,
+    ITEM_MEDAL_OF_DONATION  = 0xDC,
+    ITEM_POWER_MEDAL_2      = 0xDD,
+    ITEM_TRUE_POWER_MEDAL_2 = 0xDE,
     ITEM_ENGRAVE_AWAKENING  = 0xDF,
     ITEM_ENGRAVING_MEDAL    = 0xE0,
+    ITEM_ABYSS_MEDAL        = 0xE1,
+    ITEM_DIMENSION_MEDAL    = 0xE2,
+    ITEM_ELECTRONIC_MEDAL   = 0xE3,
+    ITEM_BLACKLIST          = 0xE4,
+    ITEM_SNOW_MEDAL         = 0xE5,
     
     ITEM_LEVEL_BOOST_BOOK   = 0x12D,
     ITEM_REBIRTH_BOOST      = 0x12E,
@@ -140,68 +99,6 @@ enum ItemType: u32 {
     COSTUME_VALEN   = 0xA1,
     COSTUME_GHOST   = 0xA2,
     COSTUME_SCIENCE = 0xA3,
-};
-
-struct Items {
-    ItemType itemtype;
-    u32 amount;
-    bool enabled;
-};
-
-struct Segment2 {
-    char vi[2]; // = "VI"
-    u32 seg2_size;
-    //u32 *seg3_ptr: u8 @ seg2_size + $;
-    u16 stub5_1;
-    s32 element_count;
-    Items items[element_count];
-};
-
-struct Settings {
-    u8 stub7_1;
-    u8 volume_background;
-    u8 stub7_2;
-    u8 volume_effect;
-    bool stub7_3[3];
-    bool balance_upgrade;
-    bool keep_screen_on;
-    bool auto_upgrade;
-};
-
-enum StickControlType: u8 {
-    FIXED,
-    FLOAT,
-    DYNAMIC,
-};
-
-enum NumberEffectType: u8 {
-    DEFAULT,
-    SHORTENED,
-    SIMPLIFIED,
-    PREFIX,
-};
-
-struct Metadata {
-    char validity[33];
-    char account_id[8];
-    
-    char device[8]; // = device
-    char stub[8]; // _____}_@
-    char session_id[33];
-    
-    bool disabled_stick_control;
-    StickControlType stick_control_type;
-    
-    bool number_effect;
-    NumberEffectType num_effect_type;
-};
-
-struct Segment3 {
-    char Gsi[3];
-    s32 stub6_1;
-    Settings settings;
-    Metadata metadata;
-    s64 stub6_2;
 };
 
 enum CollectionType: u16 {
@@ -305,6 +202,154 @@ enum CollectionType: u16 {
     BOSS_GILDED_GOBLIN,
 };
 
+enum StickControlType: u8 {
+    FIXED,
+    FLOAT,
+    DYNAMIC,
+};
+
+enum NumberEffectType: u8 {
+    DEFAULT,
+    SHORTENED,
+    SIMPLIFIED,
+    PREFIX,
+};
+
+enum MineType: u16 {
+    DESERT      = 0x01,
+    FOREST      = 0x02,
+    ICE         = 0x03,
+    SEA         = 0x04,
+    MAGMA       = 0x05,
+    SPACE       = 0x06,
+    RUIN        = 0x07,
+    TIME        = 0x08,
+    HEAVEN      = 0x09,
+    INFINITY    = 0x0A, // and temple of engrave
+    ABYSS       = 0x0B,
+    DIMENSION   = 0x0C,
+    ELECTRONIC  = 0x0D,
+    
+    TRIAL_OF_POWER_HARD     = 0x64,
+    TRIAL_OF_POWER_HARD_II  = 0x65,
+};
+
+struct Header {
+    u32 magic;
+    if(magic != 0x5354CA83) return;
+    u32 seg1_size;
+    //u16 *seg2_ptr: u8 @ seg1_size + 0x8;
+};
+
+struct Level {
+    s16 level_len;
+    
+    s32 power;
+    s32 speed;
+    s32 value;
+    
+    s32 rebirth_count;
+};
+
+struct Assets {
+    s32 money_len; // 16-bit array
+    s16 money[money_len];
+    
+    s32 soulmoney_len; // 16-bit array
+    s16 soulmoney[soulmoney_len]; // Raw hex value != In-game display value (non 1:1 mapping)
+    
+    ItemType equipped_costume;
+};
+
+struct Stub3 {
+    u64 stub3_1;
+    u64 stub3_2;
+    u8 stub3_3[23];
+    
+    s64 stub3_4;
+    s16 stub3_5;
+    s64 stub3_6;
+};
+
+struct SealingStoneData {
+    MineType mine_type;
+    bool weakened;
+};
+
+// It seems to have too many options
+enum DimensionOptions: u16 {
+    
+};
+
+struct DimensionToolsData {
+    s16 size;
+    DimensionOptions pickaxe[size / 2];
+    DimensionOptions record[size / 2];
+};
+
+struct Segment1 {
+    Level level;
+    Assets assets;
+    
+    Stub3 stub3;
+    
+    // not a solid state drive
+    s16 ssd_len;
+    SealingStoneData ssd[ssd_len];
+    
+    DimensionToolsData dimdata;
+    u8 barrier; // 0xFF
+};
+
+struct Items {
+    ItemType itemtype;
+    u32 amount;
+    bool enabled;
+};
+
+struct Segment2 {
+    char vi[2]; // = "VI"
+    u32 seg2_size;
+    //u32 *seg3_ptr: u8 @ seg2_size + $;
+    u16 stub5_1;
+    s32 element_count;
+    Items items[element_count];
+};
+
+struct Settings {
+    u8 stub7_1;
+    u8 volume_background;
+    u8 stub7_2;
+    u8 volume_effect;
+    bool stub7_3[3];
+    bool balance_upgrade;
+    bool keep_screen_on;
+    bool auto_upgrade;
+};
+
+struct Metadata {
+    char validity[33];
+    char account_id[8];
+    
+    char device[8]; // = device
+    char stub[8]; // _______@
+    char session_id[33];
+    
+    bool disabled_stick_control;
+    StickControlType stick_control_type;
+    
+    bool number_effect;
+    NumberEffectType num_effect_type;
+};
+
+struct Segment3 {
+    char Gsi[3];
+    s32 stub6_1;
+    Settings settings;
+    Metadata metadata;
+    s64 stub6_2;
+};
+
 struct Collections {
     CollectionType collection_type;
     s64 data;
@@ -326,16 +371,10 @@ struct Body {
 Header header @ 0x0;
 Body body @ 0x08;
 
-fn assert(str s, auto a, auto b) {
-    if(a != b) 
-        std::warning("[" + s + "] '" + 
-            std::string::to_string(a) + "' != " + 
-            std::string::to_string(b));
-};
-
 // Validate file structure
 assert("BARRIER", 255, body.seg1.barrier);
 assert("VI", "VI", body.seg2.vi);
+assert("SEGMENT1 SIZE MISSMATCH", header.seg1_size, sizeof(body.seg1));
 assert("DEVICE", "device\0\0", body.seg3.metadata.device);
 assert("XX", "XX", body.XX_foot);
 
