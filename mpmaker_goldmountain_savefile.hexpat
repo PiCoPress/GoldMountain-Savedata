@@ -12,11 +12,12 @@ fn assert(str s, auto a, auto b) {
 };
 
 enum ItemType: u32 {
+    ITEM_EVENT_PASS         = 0x0B,
     ITEM_DAILY_PASS         = 0x0C,
     ITEM_INFINITY_KEY       = 0x0D,
     ITEM_TRIAL_PASS         = 0x0E,
     
-    ITEM_STuRDY_BOOTS       = 0x33,
+    ITEM_STURDY_BOOTS       = 0x33,
     ITEM_ENHANCED_BOOTS     = 0x34,
     ITEM_WING_BOOTS         = 0x35,
     
@@ -235,9 +236,8 @@ enum MineType: u16 {
 };
 
 struct Header {
-    u32 magic;
-    if(magic != 0x5354CA83) return;
-    u32 seg1_size;
+    
+    
     //u16 *seg2_ptr: u8 @ seg1_size + 0x8;
 };
 
@@ -264,11 +264,15 @@ struct Assets {
 struct Stub3 {
     u64 stub3_1;
     u64 stub3_2;
-    u8 stub3_3[23];
+    u8 stub3_3[17];
     
-    s64 stub3_4;
-    s16 stub3_5;
-    s64 stub3_6;
+    s32 buff_time;
+    
+    s16 stub3_4;
+    s64 stub3_5;
+    s16 stub3_6;
+    s32 skill_used;
+    s32 stub3_7;
 };
 
 struct SealingStoneData {
@@ -288,6 +292,7 @@ struct DimensionToolsData {
 };
 
 struct Segment1 {
+    u32 seg1_size;
     Level level;
     Assets assets;
     
@@ -347,7 +352,6 @@ struct Segment3 {
     s32 stub6_1;
     Settings settings;
     Metadata metadata;
-    s64 stub6_2;
 };
 
 struct Collections {
@@ -356,11 +360,17 @@ struct Collections {
 };
 
 struct Segment4 {
+    char LC[2];
+    s32 seg4_size;
+    s16 stub8;
     s16 collection_count;
     Collections collection[collection_count];
 };
 
-struct Body {
+struct Data {
+    u32 magic;
+    if(magic != 0x5354CA83) return;
+    
     Segment1 seg1;
     Segment2 seg2;
     Segment3 seg3;
@@ -368,14 +378,15 @@ struct Body {
     char XX_foot[2]; // XX
 };
 
-Header header @ 0x0;
-Body body @ 0x08;
+Data data @ 0x00;
 
 // Validate file structure
-assert("BARRIER", 255, body.seg1.barrier);
-assert("VI", "VI", body.seg2.vi);
-assert("SEGMENT1 SIZE MISSMATCH", header.seg1_size, sizeof(body.seg1));
-assert("DEVICE", "device\0\0", body.seg3.metadata.device);
-assert("XX", "XX", body.XX_foot);
+assert("BARRIER", 255, data.seg1.barrier);
+assert("VI", "VI", data.seg2.vi);
+assert("SEGMENT1 SIZE MISMATCH", data.seg1.seg1_size, sizeof(data.seg1) - 4);
+assert("SEGMENT2 SIZE MISMATCH", data.seg2.seg2_size, sizeof(data.seg2) - 6);
+assert("DEVICE", "device\0\0", data.seg3.metadata.device);
+assert("SEGMENT4 SIZE MISMATCH", data.seg4.seg4_size, sizeof(data.seg4) - 6);
+assert("XX", "XX", data.XX_foot);
 
-std::print(sizeof(body));
+std::print(sizeof(data));
