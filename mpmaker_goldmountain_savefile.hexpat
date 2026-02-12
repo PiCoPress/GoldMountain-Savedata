@@ -290,7 +290,7 @@ struct Stub3 {
     u64 stub3_2;
     u32 stub3_3;
     u8 stub3_4[12];
-    s8 stub3_5; // will cause error when zero
+    s8 stub3_5; // will cause error when not zero
     assert("stub3_5 is not zero", 0, EQ, stub3_5);
     
     s32 buff_time; // 60 buff_time = 1 seconds
