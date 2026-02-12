@@ -4,11 +4,32 @@ import std.string;
 // This pattern is for the game GoldMountain,
 // which is developed by MPMaker
 
-fn assert(str s, auto a, auto b) {
-    if(a != b) 
-        std::warning("[" + s + "] '" + 
-            std::string::to_string(a) + "' != " + 
-            std::string::to_string(b));
+bool do_assert = true;
+
+u8 EQ = 0;
+u8 NE = 1;
+u8 LT = 2;
+u8 GT = 3;
+u8 LE = 4;
+u8 GE = 5;
+str OPRS[6] = {"==", "!=", "<", ">", "<=", ">="};
+
+fn assert(str s, auto a, u8 opr, auto b) {
+    if(!do_assert) return;
+    str msg = "[Assertion] " + s + ": '" + 
+            std::string::to_string(a) + 
+            "' " + OPRS[opr] + " " + 
+            std::string::to_string(b);
+    match(opr) {
+        (EQ): if(a == b) return;
+        (NE): if(a != b) return;
+        (LT): if(a < b) return;
+        (GT): if(a > b) return;
+        (LE): if(a <= b) return;
+        (GE): if(a >= b) return;
+        (_): std::warning("???"); // ???
+    }
+    std::warning(msg);
 };
 
 enum ItemType: u32 {
@@ -235,10 +256,13 @@ enum MineType: u16 {
     TRIAL_OF_POWER_HARD_II  = 0x65,
 };
 
-struct Header {
+// It seems to have too many options
+enum DimensionOptions: u16 {
+    BONUS_LEVEL_5P          = 0x03E9,
+    INCREASE_MOVE_SPEED     = 0x03EA,
+    BOSS_DAMAGE_10P         = 0x03EC,
+    INCREASE_RARE_ORE_RATE  = 0x03EE,
     
-    
-    //u16 *seg2_ptr: u8 @ seg1_size + 0x8;
 };
 
 struct Level {
@@ -264,25 +288,25 @@ struct Assets {
 struct Stub3 {
     u64 stub3_1;
     u64 stub3_2;
-    u8 stub3_3[17];
+    u32 stub3_3;
+    u8 stub3_4[12];
+    s8 stub3_5; // will cause error when zero
+    assert("stub3_5 is not zero", 0, EQ, stub3_5);
     
-    s32 buff_time;
+    s32 buff_time; // 60 buff_time = 1 seconds
     
-    s16 stub3_4;
-    s64 stub3_5;
     s16 stub3_6;
-    s32 skill_used;
     s32 stub3_7;
+    s16 stub3_8;
+    s16 stub3_9;
+    s16 stub3_10;
+    s32 skill_used;
+    s32 stub3_11;
 };
 
 struct SealingStoneData {
     MineType mine_type;
     bool weakened;
-};
-
-// It seems to have too many options
-enum DimensionOptions: u16 {
-    
 };
 
 struct DimensionToolsData {
@@ -303,7 +327,7 @@ struct Segment1 {
     SealingStoneData ssd[ssd_len];
     
     DimensionToolsData dimdata;
-    u8 barrier; // 0xFF
+    u8 locked_pickaxe_option; // 0xFF = unlocked
 };
 
 struct Items {
@@ -313,19 +337,19 @@ struct Items {
 };
 
 struct Segment2 {
-    char vi[2]; // = "VI"
-    u32 seg2_size;
+    char vi[2]; assert("VI Section", "VI", EQ, vi);
+    s32 seg2_size;
     //u32 *seg3_ptr: u8 @ seg2_size + $;
-    u16 stub5_1;
+    s16 stub5_1; assert("overflow will crash the game", 0, LE, stub5_1);
     s32 element_count;
     Items items[element_count];
 };
 
 struct Settings {
     u8 stub7_1;
-    u8 volume_background;
+    u8 bgm_volume; assert("BGM Volume", 100, GE, bgm_volume);
     u8 stub7_2;
-    u8 volume_effect;
+    u8 se_volume; assert("SE Volume", 100, GE, se_volume);
     bool stub7_3[3];
     bool balance_upgrade;
     bool keep_screen_on;
@@ -336,7 +360,7 @@ struct Metadata {
     char validity[33];
     char account_id[8];
     
-    char device[8]; // = device
+    char device[8]; assert("Device", "device\0\0", EQ, device);
     char stub[8]; // _______@
     char session_id[33];
     
@@ -348,7 +372,7 @@ struct Metadata {
 };
 
 struct Segment3 {
-    char Gsi[3];
+    char GSi[3]; assert("GSi", "GSi", EQ, GSi);
     s32 stub6_1;
     Settings settings;
     Metadata metadata;
@@ -360,9 +384,9 @@ struct Collections {
 };
 
 struct Segment4 {
-    char LC[2];
+    char LC[2]; assert("LC", "LC", EQ, LC);
     s32 seg4_size;
-    s16 stub8;
+    s16 stub8; assert("overflow will crash the game", 0, LE, stub8);
     s16 collection_count;
     Collections collection[collection_count];
 };
@@ -371,22 +395,12 @@ struct Data {
     u32 magic;
     if(magic != 0x5354CA83) return;
     
-    Segment1 seg1;
-    Segment2 seg2;
+    Segment1 seg1; assert("segment1 size mismatch", seg1.seg1_size, EQ, sizeof(seg1) - 4);
+    Segment2 seg2; assert("segment2 size mismatch", seg2.seg2_size, EQ, sizeof(seg2) - 6);
     Segment3 seg3;
-    Segment4 seg4;
-    char XX_foot[2]; // XX
+    Segment4 seg4; assert("segment4 size mismatch", seg4.seg4_size, EQ, sizeof(seg4) - 6);
+    char XX_foot[2]; assert("XX", "XX", EQ, XX_foot);
 };
 
 Data data @ 0x00;
-
-// Validate file structure
-assert("BARRIER", 255, data.seg1.barrier);
-assert("VI", "VI", data.seg2.vi);
-assert("SEGMENT1 SIZE MISMATCH", data.seg1.seg1_size, sizeof(data.seg1) - 4);
-assert("SEGMENT2 SIZE MISMATCH", data.seg2.seg2_size, sizeof(data.seg2) - 6);
-assert("DEVICE", "device\0\0", data.seg3.metadata.device);
-assert("SEGMENT4 SIZE MISMATCH", data.seg4.seg4_size, sizeof(data.seg4) - 6);
-assert("XX", "XX", data.XX_foot);
-
 std::print(sizeof(data));
