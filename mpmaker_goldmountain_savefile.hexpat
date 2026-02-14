@@ -351,11 +351,19 @@ struct Level {
 };
 
 struct Assets {
-    s32 money_len; // 16-bit array
+    /*
+        Money and SoulMoney are concatenated string
+            of decimal-converted shorts.
+            
+        Therefore, each array value must be in 0~9999.
+        
+        .... weird
+    */
+    s32 money_len;
     s16 money[money_len];
     
-    s32 soulmoney_len; // 16-bit array
-    s16 soulmoney[soulmoney_len]; // Raw hex value != In-game display value (non 1:1 mapping)
+    s32 soulmoney_len;
+    s16 soulmoney[soulmoney_len];
     
     ItemType equipped_costume;
 };
@@ -391,6 +399,7 @@ struct DimensionToolsData {
 };
 
 struct Segment1 {
+    char TS[2]; assert("TS", "TS", EQ, TS);
     u32 seg1_size;
     Level level;
     Assets assets;
@@ -467,10 +476,10 @@ struct Segment4 {
 };
 
 struct Data {
-    u32 magic;
-    if(magic != 0x5354CA83) return;
+    u16 magic;
+    if(magic != 0xCA83) return;
     
-    Segment1 seg1; assert("segment1 size mismatch", seg1.seg1_size, EQ, sizeof(seg1) - 4);
+    Segment1 seg1; assert("segment1 size mismatch", seg1.seg1_size, EQ, sizeof(seg1) - 6);
     Segment2 seg2; assert("segment2 size mismatch", seg2.seg2_size, EQ, sizeof(seg2) - 6);
     Segment3 seg3;
     Segment4 seg4; assert("segment4 size mismatch", seg4.seg4_size, EQ, sizeof(seg4) - 6);
