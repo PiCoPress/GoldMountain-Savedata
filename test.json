@@ -1,0 +1,918 @@
+{
+    "data": {
+        "magic": 51843,
+        "seg1": {
+            "TS": "TS",
+            "seg1_size": 178,
+            "level": {
+                "level_len": 16,
+                "power": 2000000000,
+                "speed": 2000000000,
+                "value": 2000000000,
+                "rebirth_count": -16
+            },
+            "assets": {
+                "money_len": 7,
+                "money": [
+                    453,
+                    6972,
+                    4257,
+                    7317,
+                    5041,
+                    2866,
+                    2
+                ],
+                "soulmoney_len": 4,
+                "soulmoney": [
+                    5003,
+                    1094,
+                    2509,
+                    3
+                ],
+                "equipped_costume": "ItemType%3A%3ACOSTUME_SCIENCE"
+            },
+            "stub3": {
+                "stub3_1": 0,
+                "stub3_2": 4676563949121354586,
+                "stub3_3": 0,
+                "stub3_4": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "stub3_5": 0,
+                "buff_time": 2147478848,
+                "stub3_6": 0,
+                "stub3_7": 0,
+                "stub3_8": 500,
+                "stub3_9": -6735,
+                "stub3_10": 702,
+                "skill_used": 34,
+                "stub3_11": 0
+            },
+            "ssd_len": 16,
+            "ssd": [
+                {
+                    "mine_type": "MineType%3A%3A%3F%3F%3F",
+                    "weakened": true
+                },
+                {
+                    "mine_type": "MineType%3A%3ADESERT",
+                    "weakened": true
+                },
+                {
+                    "mine_type": "MineType%3A%3AFOREST",
+                    "weakened": true
+                },
+                {
+                    "mine_type": "MineType%3A%3AICE",
+                    "weakened": true
+                },
+                {
+                    "mine_type": "MineType%3A%3ASEA",
+                    "weakened": true
+                },
+                {
+                    "mine_type": "MineType%3A%3AMAGMA",
+                    "weakened": true
+                },
+                {
+                    "mine_type": "MineType%3A%3ASPACE",
+                    "weakened": true
+                },
+                {
+                    "mine_type": "MineType%3A%3ARUIN",
+                    "weakened": true
+                },
+                {
+                    "mine_type": "MineType%3A%3ATIME",
+                    "weakened": true
+                },
+                {
+                    "mine_type": "MineType%3A%3AHEAVEN",
+                    "weakened": true
+                },
+                {
+                    "mine_type": "MineType%3A%3AINFINITY",
+                    "weakened": true
+                },
+                {
+                    "mine_type": "MineType%3A%3AABYSS",
+                    "weakened": true
+                },
+                {
+                    "mine_type": "MineType%3A%3ADIMENSION",
+                    "weakened": true
+                },
+                {
+                    "mine_type": "MineType%3A%3AELECTRONIC",
+                    "weakened": true
+                },
+                {
+                    "mine_type": "MineType%3A%3ATRIAL_OF_POWER_HARD",
+                    "weakened": true
+                },
+                {
+                    "mine_type": "MineType%3A%3ATRIAL_OF_POWER_HARD_II",
+                    "weakened": true
+                }
+            ],
+            "dimdata": {
+                "size": 8,
+                "pickaxe": [
+                    "DimensionOptions%3A%3AINCREASE_RARE_ORE_RATE",
+                    "DimensionOptions%3A%3AINCREASE_RARE_ORE_RATE",
+                    "DimensionOptions%3A%3AINCREASE_RARE_ORE_RATE",
+                    "DimensionOptions%3A%3AINCREASE_RARE_ORE_RATE"
+                ],
+                "record": [
+                    "DimensionOptions%3A%3AINCREASE_MOVE_SPEED",
+                    "DimensionOptions%3A%3ABOSS_DAMAGE_10P",
+                    "DimensionOptions%3A%3AINCREASE_RARE_ORE_RATE",
+                    "DimensionOptions%3A%3AEXTRA_5P_LEVEL"
+                ]
+            },
+            "locked_pickaxe_option": 255
+        },
+        "seg2": {
+            "vi": "VI",
+            "seg2_size": 627,
+            "stub5_1": 2,
+            "element_count": 69,
+            "items": [
+                {
+                    "itemtype": "ItemType%3A%3AITEM_DAILY_PASS",
+                    "amount": 254,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3AITEM_INFINITY_KEY",
+                    "amount": 2147483632,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3AITEM_TRIAL_PASS",
+                    "amount": 208,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3AITEM_STURDY_BOOTS",
+                    "amount": 1,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3AITEM_ENHANCED_BOOTS",
+                    "amount": 1,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3AITEM_WING_BOOTS",
+                    "amount": 1,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3AITEM_PHILOSOPHER_STONE",
+                    "amount": 1,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3AITEM_MIDAS_TOUCH",
+                    "amount": 1,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3AITEM_MAGIC_LANTERN",
+                    "amount": 1,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3AITEM_LIMIT_BREAK",
+                    "amount": 1,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3AITEM_RUBBLE_REMOVAL",
+                    "amount": 1,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3AITEM_MINERAL_RADAR",
+                    "amount": 1,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3AITEM_COMPASS",
+                    "amount": 1,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3AITEM_SOUL_MEDAL",
+                    "amount": 2130706696,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3AITEM_RUSH_ATTACK",
+                    "amount": 1,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3AITEM_STRIKE_GIANT",
+                    "amount": 1,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3AITEM_LUCKY_BLOW",
+                    "amount": 1,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3AITEM_SHADOW_FRIEND",
+                    "amount": 1,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3AITEM_MEM_OF_DREAMER",
+                    "amount": 1,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3AITEM_TREASURE_MAP",
+                    "amount": 1,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3AITEM_SECRET_KEY",
+                    "amount": 2130706433,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3AITEM_SPECIAL_ID_CARD",
+                    "amount": 1,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3AITEM_AUTOMATIC_SAFE",
+                    "amount": 299,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3AITEM_STURDY_COAT",
+                    "amount": 255,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3AITEM_MINE_BOMB",
+                    "amount": 1,
+                    "enabled": false
+                },
+                {
+                    "itemtype": "ItemType%3A%3AITEM_ANALYSIS_HISTORY",
+                    "amount": 2130706687,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3ACOSTUME_DRILL",
+                    "amount": 1,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3ACOSTUME_BIGHAND",
+                    "amount": 1,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3ACOSTUME_GOLDEN",
+                    "amount": 1,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3ACOSTUME_HAMMER",
+                    "amount": 1,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3ACOSTUME_SNIPER",
+                    "amount": 1,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3ACOSTUME_SANTA",
+                    "amount": 1,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3ACOSTUME_SUMMER",
+                    "amount": 1,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3ACOSTUME_SHIELD",
+                    "amount": 1,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3ACOSTUME_NINJA",
+                    "amount": 1,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3ACOSTUME_PRISON",
+                    "amount": 1,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3ACOSTUME_VALEN",
+                    "amount": 1,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3ACOSTUME_GHOST",
+                    "amount": 1,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3ACOSTUME_SCIENCE",
+                    "amount": 1,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3AITEM_SPEED_MEDAL",
+                    "amount": 2130706433,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3AITEM_POWER_MEDAL",
+                    "amount": 2130706434,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3AITEM_SKILL_MEDAL",
+                    "amount": 2130706435,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3AITEM_MUD_MEDAL",
+                    "amount": 2130706436,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3AITEM_GOLD_MEDAL",
+                    "amount": 2130706437,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3AITEM_DIAMOND_MEDAL",
+                    "amount": 2130706438,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3AITEM_DARK_MEDAL",
+                    "amount": 2130706433,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3AITEM_TRUE_POWER_MEDAL",
+                    "amount": 2130706439,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3AITEM_FOREST_MEDAL",
+                    "amount": 2130706433,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3AITEM_SEA_MEDAL",
+                    "amount": 2130706433,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3AITEM_TRUE_SPEED_MEDAL",
+                    "amount": 2130706440,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3AITEM_MAGMA_MEDAL",
+                    "amount": 2130706433,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3AITEM_SPACE_MEDAL",
+                    "amount": 2130706433,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3AITEM_RUIN_MEDAL",
+                    "amount": 2130706433,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3AITEM_ICE_MEDAL",
+                    "amount": 2130706433,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3AITEM_POWER_MEDAL_2",
+                    "amount": 2130706441,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3AITEM_TRUE_POWER_MEDAL_2",
+                    "amount": 2130706442,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3AITEM_ENGRAVE_AWAKENING",
+                    "amount": 2130706433,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3AITEM_ENGRAVING_MEDAL",
+                    "amount": 1868562945,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3AITEM_TIME_MEDAL",
+                    "amount": 2130706437,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3AITEM_SNOW_MEDAL",
+                    "amount": 2130706440,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3AITEM_LEVEL_BOOST_BOOK",
+                    "amount": 66,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3AITEM_REBIRTH_BOOST",
+                    "amount": 80,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3AITEM_REVIVAL_BOOK",
+                    "amount": 76,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3AITEM_CATALYST",
+                    "amount": 16776968,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3AITEM_DIMENSION_PICKAXE",
+                    "amount": 1,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3AITEM_DIMENSION_SHARD",
+                    "amount": 16776775,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3AITEM_DIMENSION_RECORD",
+                    "amount": 1,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3AITEM_DIMENSION_HELMET",
+                    "amount": 1,
+                    "enabled": true
+                },
+                {
+                    "itemtype": "ItemType%3A%3AITEM_COMPRESSION_MEDAL",
+                    "amount": 255,
+                    "enabled": true
+                }
+            ]
+        },
+        "seg3": {
+            "GSi": "GSi",
+            "stub6_1": 134217728,
+            "settings": {
+                "stub7_1": 0,
+                "bgm_volume": 100,
+                "stub7_2": 0,
+                "se_volume": 100,
+                "stub7_3": [
+                    true,
+                    true,
+                    true
+                ],
+                "balance_upgrade": true,
+                "keep_screen_on": true,
+                "auto_upgrade": true
+            },
+            "metadata": {
+                "validity": "74d69693aae7eb45c177ba3d505e78e5%00",
+                "account_id": "Q5JC4KQ%00",
+                "device": "device%00%00",
+                "stub": "%ECF%F7%5C%22~%E6%40",
+                "session_id": "25f334ecadae325fbd45419dea8e0e29%00",
+                "disabled_stick_control": false,
+                "stick_control_type": "StickControlType%3A%3ADYNAMIC",
+                "number_effect": true,
+                "num_effect_type": "NumberEffectType%3A%3APREFIX"
+            }
+        },
+        "seg4": {
+            "LC": "LC",
+            "seg4_size": 954,
+            "stub8": 2,
+            "collection_count": 95,
+            "collection": [
+                {
+                    "collection_type": "CollectionType%3A%3AORE_STONE",
+                    "data": 999999999999999999
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_BRONZE",
+                    "data": 999999999999999999
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_IRON",
+                    "data": 999999999999999999
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_SILVER",
+                    "data": 999999999999999999
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_GOLD",
+                    "data": 999999999999999999
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_MARBLE",
+                    "data": 999999999999999999
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_PLATINUM",
+                    "data": 999999999999999999
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_EMERALD",
+                    "data": 999999999999999999
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_SAPPHIRE",
+                    "data": 999999999999999999
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_RUBY",
+                    "data": 999999999999999999
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_DIAMOND",
+                    "data": 999999999999999999
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_PINK_DIAMOND",
+                    "data": 999999999999999999
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_MYTHRIL",
+                    "data": 999999999999999999
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_ORICHALCUM",
+                    "data": 999999999999999999
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_ADAMANTIUM",
+                    "data": 999999999999999999
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_BLOODSTONE",
+                    "data": 999999999999999999
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_ANCIENT_EGG",
+                    "data": 999999999999999999
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_INFINITIUM",
+                    "data": 999999999999999999
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_OBSIDIAN",
+                    "data": 8070450532247932275
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_FLAME_CRYSTAL",
+                    "data": 8070450532247930092
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_RED_SUNSTONE",
+                    "data": 8070450532247929032
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_STARDUST",
+                    "data": 8070450532247931200
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_LITTLE_PLANET",
+                    "data": 8070450532247928848
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_DARK_MATTER",
+                    "data": 999999999999999999
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_LAPIS_LAZULI",
+                    "data": 999999999999999999
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_PYRITE",
+                    "data": 999999999999999999
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_FINE_STONE",
+                    "data": 8070450532247928835
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_LITTLE_SUN",
+                    "data": 999999999999999999
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_RAINBOW_STAR",
+                    "data": 999999999999999999
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_RUIN_BLOCK",
+                    "data": 999999999999999999
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_RUIN_WALL",
+                    "data": 8070450532247928833
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_TRACES_OF_ARTIFACT",
+                    "data": 999999999999999999
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_EMERALD_SCARAB",
+                    "data": 999999999999999999
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_SARCOPHAGUS",
+                    "data": 8070450532247928833
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_GOLDEN_MUSHROOM",
+                    "data": 999999999999999999
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_AMBER",
+                    "data": 999999999999999999
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_GOLDEN_APPLE_TREE",
+                    "data": 999999999999999999
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_SPIRIT_STONE",
+                    "data": 999999999999999999
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_BLUE_ICE",
+                    "data": 8070450532247928837
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_CRYSTAL",
+                    "data": 999999999999999999
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_YETIS_FOOTPRINT",
+                    "data": 999999999999999999
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_CORE_OF_WINTER",
+                    "data": 8070450532247928835
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_CORAL_REEF",
+                    "data": 999999999999999999
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_AQUAMARINE",
+                    "data": 999999999999999999
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_PEARL_SHELL",
+                    "data": 999999999999999999
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_BLACK_PEARL_SHELL",
+                    "data": 999999999999999999
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_SULFUR",
+                    "data": 999999999999999999
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_RUIN_PILLAR",
+                    "data": 999999999999999999
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_RELIC_CHEST",
+                    "data": 999999999999999999
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_INDICATOR_OF_TIME",
+                    "data": 8070450532247928832
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_AKASHIC_RECORDS",
+                    "data": 8070450532247928832
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_BREAK_OF_DIMENSION",
+                    "data": 999999999999999999
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_TIME_MACHINE",
+                    "data": 999999999999999999
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_CLOUD",
+                    "data": 8070450532247933832
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_NIMBUS",
+                    "data": 8070450532247928882
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_TORNADO",
+                    "data": 999999999999999999
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_ABYSS_STONE",
+                    "data": 8070450532248238832
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_SOUL_TAR",
+                    "data": 8070450532248138832
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_HELLFIRE",
+                    "data": 8070450532247936832
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_DEATH_FLOWER",
+                    "data": 8070450532247928832
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_DIMENSIONLITE",
+                    "data": 999999999999999999
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_EXTRATERRESTRIAL_MATERIAL",
+                    "data": 999999999999999999
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_VISION_STONE",
+                    "data": 8070450532247928832
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_SCRIPT",
+                    "data": 999999999999999999
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_CRYPTOCURRENCY",
+                    "data": 999999999999999999
+                },
+                {
+                    "collection_type": "CollectionType%3A%3AORE_TOP_SECRET",
+                    "data": 999999999999999999
+                },
+                {
+                    "collection_type": "CollectionType%3A%3ABOSS_MUD_GOLEM",
+                    "data": 999999999999999999
+                },
+                {
+                    "collection_type": "CollectionType%3A%3ABOSS_GEAR_GIANT",
+                    "data": 999999999999999999
+                },
+                {
+                    "collection_type": "CollectionType%3A%3ABOSS_SPECTER_OF_TREE",
+                    "data": 999999999999999999
+                },
+                {
+                    "collection_type": "CollectionType%3A%3ABOSS_GOBLIN_KING",
+                    "data": 8070450532247928832
+                },
+                {
+                    "collection_type": "CollectionType%3A%3ABOSS_KRAKEN",
+                    "data": 999999999999999999
+                },
+                {
+                    "collection_type": "CollectionType%3A%3ABOSS_GHOST_OF_OBLIVION",
+                    "data": 8070450532247928832
+                },
+                {
+                    "collection_type": "CollectionType%3A%3ABOSS_ABYSS_WATCHER",
+                    "data": 8070450532247928832
+                },
+                {
+                    "collection_type": "CollectionType%3A%3ABOSS_HUGE_SLIME",
+                    "data": 8070450532247928832
+                },
+                {
+                    "collection_type": "CollectionType%3A%3ABOSS_ANCIENT_GOD",
+                    "data": 999999999999999999
+                },
+                {
+                    "collection_type": "CollectionType%3A%3ABOSS_DARK_DRAGON",
+                    "data": 8070450532247928832
+                },
+                {
+                    "collection_type": "CollectionType%3A%3ABOSS_GOLDEN_WARRIOR",
+                    "data": 8070450532247928832
+                },
+                {
+                    "collection_type": "CollectionType%3A%3ABOSS_RUIN_SENTINEL",
+                    "data": 999999999999999999
+                },
+                {
+                    "collection_type": "CollectionType%3A%3ABOSS_DIAMOND_SPIRIT",
+                    "data": 999999999999999999
+                },
+                {
+                    "collection_type": "CollectionType%3A%3ABOSS_MIRAGE_TURRET",
+                    "data": 8070450532247928832
+                },
+                {
+                    "collection_type": "CollectionType%3A%3ABOSS_WYVERN_TWINS",
+                    "data": 8070450532247928832
+                },
+                {
+                    "collection_type": "CollectionType%3A%3ABOSS_DRAGON_LORD",
+                    "data": 8070450532247928832
+                },
+                {
+                    "collection_type": "CollectionType%3A%3ABOSS_GUARDIAN_OF_FOREST",
+                    "data": 999999999999999999
+                },
+                {
+                    "collection_type": "CollectionType%3A%3ABOSS_UNSEALED_DESTROYER",
+                    "data": 999999999999999999
+                },
+                {
+                    "collection_type": "CollectionType%3A%3ABOSS_CENTAUR",
+                    "data": 999999999999999999
+                },
+                {
+                    "collection_type": "CollectionType%3A%3ABOSS_YETI",
+                    "data": 8070450532247928832
+                },
+                {
+                    "collection_type": "CollectionType%3A%3ABOSS_SHARK_SWARM",
+                    "data": 8070450532247928832
+                },
+                {
+                    "collection_type": "CollectionType%3A%3ABOSS_PIRATE_SKULL",
+                    "data": 999999999999999999
+                },
+                {
+                    "collection_type": "CollectionType%3A%3ABOSS_RED_DEMON",
+                    "data": 999999999999999999
+                },
+                {
+                    "collection_type": "CollectionType%3A%3ABOSS_FLAME_SPIRIT",
+                    "data": 8070450532247928832
+                },
+                {
+                    "collection_type": "CollectionType%3A%3ABOSS_CHAOS",
+                    "data": 999999999999999999
+                },
+                {
+                    "collection_type": "CollectionType%3A%3ABOSS_PROVIDENCE",
+                    "data": 8070450532247928832
+                },
+                {
+                    "collection_type": "CollectionType%3A%3ABOSS_TIME_REAPER",
+                    "data": 8070450532247928832
+                },
+                {
+                    "collection_type": "CollectionType%3A%3ABOSS_MINER",
+                    "data": 8070450532247928832
+                },
+                {
+                    "collection_type": "CollectionType%3A%3ABOSS_GILDED_GOBLIN",
+                    "data": 8070450532247928832
+                }
+            ]
+        },
+        "XX_foot": "XX"
+    }
+}

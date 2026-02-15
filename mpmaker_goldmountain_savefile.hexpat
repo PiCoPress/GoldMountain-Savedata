@@ -1,3 +1,4 @@
+#pragma allow_edits
 import std.io;
 import std.string;
 
@@ -398,6 +399,42 @@ struct DimensionToolsData {
     DimensionOptions record[size / 2];
 };
 
+struct Items {
+    ItemType itemtype;
+    u32 amount;
+    bool enabled;
+};
+
+struct Settings {
+    u8 bgm_volume; assert("BGM Volume", 100, GE, bgm_volume);
+    u8 stub7_1;
+    u8 se_volume; assert("SE Volume", 100, GE, se_volume);
+    bool stub7_2[3];
+    bool balance_upgrade;
+    bool keep_screen_on;
+    bool auto_upgrade;
+};
+
+struct Metadata {
+    char validity[33];
+    char account_id[8];
+    
+    char device[8]; assert("Device", "device\0\0", EQ, device);
+    u64 stub;
+    char session_id[33];
+    
+    bool disabled_stick_control;
+    StickControlType stick_control_type;
+    
+    bool number_effect;
+    NumberEffectType num_effect_type;
+};
+
+struct Collections {
+    CollectionType collection_type;
+    s64 data;
+};
+
 struct Segment1 {
     char TS[2]; assert("TS", "TS", EQ, TS);
     u32 seg1_size;
@@ -414,12 +451,6 @@ struct Segment1 {
     u8 locked_pickaxe_option; // 0xFF = unlocked
 };
 
-struct Items {
-    ItemType itemtype;
-    u32 amount;
-    bool enabled;
-};
-
 struct Segment2 {
     char vi[2]; assert("VI Section", "VI", EQ, vi);
     s32 seg2_size;
@@ -429,42 +460,12 @@ struct Segment2 {
     Items items[element_count];
 };
 
-struct Settings {
-    u8 stub7_1;
-    u8 bgm_volume; assert("BGM Volume", 100, GE, bgm_volume);
-    u8 stub7_2;
-    u8 se_volume; assert("SE Volume", 100, GE, se_volume);
-    bool stub7_3[3];
-    bool balance_upgrade;
-    bool keep_screen_on;
-    bool auto_upgrade;
-};
-
-struct Metadata {
-    char validity[33];
-    char account_id[8];
-    
-    char device[8]; assert("Device", "device\0\0", EQ, device);
-    char stub[8]; // _______@
-    char session_id[33];
-    
-    bool disabled_stick_control;
-    StickControlType stick_control_type;
-    
-    bool number_effect;
-    NumberEffectType num_effect_type;
-};
-
 struct Segment3 {
-    char GSi[3]; assert("GSi", "GSi", EQ, GSi);
-    s32 stub6_1;
+    char GS[2]; assert("GS", "GS", EQ, GS);
+    s32 seg3_size;
+    s16 stub6;
     Settings settings;
     Metadata metadata;
-};
-
-struct Collections {
-    CollectionType collection_type;
-    s64 data;
 };
 
 struct Segment4 {
@@ -481,10 +482,13 @@ struct Data {
     
     Segment1 seg1; assert("segment1 size mismatch", seg1.seg1_size, EQ, sizeof(seg1) - 6);
     Segment2 seg2; assert("segment2 size mismatch", seg2.seg2_size, EQ, sizeof(seg2) - 6);
-    Segment3 seg3;
+    Segment3 seg3; assert("segment3 size mismatch", seg3.seg3_size, EQ, sizeof(seg3) - 6);
     Segment4 seg4; assert("segment4 size mismatch", seg4.seg4_size, EQ, sizeof(seg4) - 6);
     char XX_foot[2]; assert("XX", "XX", EQ, XX_foot);
 };
 
 Data data @ 0x00;
+
 std::print(sizeof(data));
+u64 delta = data.seg3.metadata.stub - data.seg1.stub3.stub3_2;
+std::print("delta: " + std::string::to_string(delta / 1000 / 1000 / 60));
