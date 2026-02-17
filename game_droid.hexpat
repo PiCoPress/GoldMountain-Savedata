@@ -1,20 +1,46 @@
+#pragma array_limit 999999
+
 #include <std/mem.pat>
-import * from wav as Wave;
+import * from wav_tuned as Wave;
 import std.io;
+import std.bit;
+import std.mem;
+
 
 struct Header {
     char code[4];
     s32 size;
 };
 
+struct Pointer {
+    s32 *ptr: s32;
+};
+
+struct PointerList {
+    s32 length;
+    Pointer ptrs[length];
+} [[color("7777cc")]];
+
+struct List<T> {
+    s32 length;
+    T data[length];
+};
+
 struct GEN8 {
     Header header;
-    u8 stub[header.size];
+    s64 stub1[16];
+    
+    List<s32> pl;
+    u8 stub3[64];
+    
+    u8 align[16 - $ % 16];
 };
 
 struct OPTN {
     Header header;
-    u8 stub[header.size];
+    u32 stub1[15];
+    PointerList pl;
+    u8 stub[header.size - $ + addressof(header) + 8];
 };
 
 struct LANG {
@@ -24,22 +50,29 @@ struct LANG {
 
 struct EXTN {
     Header header;
-    u8 stub[header.size];
+    PointerList pl1;
+    u64 stub1[6];
+    
+    PointerList pl2;
+    u8 stub3[header.size - $ + addressof(header) + 8];
 };
 
 struct SOND {
     Header header;
-    u8 stub[header.size];
+    PointerList pl;
+    u8 stub[header.size - $ + addressof(header) + 8];
 };
 
 struct AGRP {
     Header header;
-    u8 stub[header.size];
+    PointerList pl;
+    u8 stub[header.size - $ + addressof(header) + 8];
 };
 
 struct SPRT {
     Header header;
-    u8 stub[header.size];
+    PointerList pl;
+    u8 stub[header.size - $ + addressof(header) + 8];
 };
 
 struct BGND {
@@ -54,17 +87,20 @@ struct PATH {
 
 struct SCPT {
     Header header;
-    u8 stub[header.size];
+    PointerList pl;
+    u8 stub[header.size - $ + addressof(header) + 8];
 };
 
 struct GLOB {
     Header header;
-    u8 stub[header.size];
+    List<s32> pl;
+    u8 stub[header.size - $ + addressof(header) + 8];
 };
 
 struct SHDR {
     Header header;
-    u8 stub[header.size];
+    PointerList pl;
+    u8 stub[header.size - $ + addressof(header) + 8];
 };
 
 struct FONT {
@@ -77,9 +113,45 @@ struct TMLN {
     u8 stub[header.size];
 };
 
+struct AnonObj1 {
+    s32;
+    s32 *ptr1: s32;
+    s32;
+};
+
+struct AnonObj2 {
+    AnonObj1 a, b;
+    s32;
+    List<s32> ls;
+    s32 anon1[4];
+    //if(anon1[0] != -1) break;
+    
+    //s32 stub[while($ != )];
+};
+
+struct Object {
+    s32 *ptr: s32;
+    s32 stub1[11];
+    //if(stub1[0] != -1) break;
+    s32 stub2[9];
+    PointerList pl;
+    if(pl.length == 0) {
+        u32 stub2_1[7];
+        PointerList pl2;
+        
+    }
+    //AnonObj2 stub3_1[3];
+    s32 offset = std::mem::read_signed($ - 4, 4) - $ + 4;
+    //std::print(offset);
+    if(offset > 0 && offset < 65536) u8 stub3[offset];
+    else break;
+} [[color("77cc66")]];
+
 struct OBJT {
     Header header;
-    u8 stub[header.size];
+    PointerList pl;
+    Object obj[pl.length];
+    u8 stub[header.size - $ + addressof(header) + 8];
 };
 
 struct FEDS {
@@ -104,7 +176,8 @@ struct TAGS {
 
 struct ROOM {
     Header header;
-    u8 stub[header.size];
+    PointerList pl;
+    u8 stub[header.size - $ + addressof(header) + 8];
 };
 
 struct UILR {
@@ -134,7 +207,8 @@ struct PSYS {
 
 struct TPAG {
     Header header;
-    u8 stub[header.size];
+    PointerList pl;
+    u8 stub[header.size - $ + addressof(header) + 8];
 };
 
 struct TGIN {
@@ -144,31 +218,77 @@ struct TGIN {
 
 struct FEAT {
     Header header;
-    u8 stub[header.size];
+    PointerList pl;
 };
 
+struct StringContainer {
+    s32 value_len;
+    char text[value_len];
+    u8 align[4 - $ % 4];
+};
+
+// String
 struct STRG {
     Header header;
-    u8 stub[header.size];
+    PointerList pl;
+    s32 a;
+    char lang_code[4];
+    StringContainer sc[pl.length - 1];
+    u8 align[header.size - $ + addressof(header) + 8];
 };
 
+bitfield bzip2 {
+    u16 magic;
+    u8 version;
+    u8 h_k_blocksize;
+    
+    u48 compressed_magic;
+    u32 crc;
+    randomized: 1;
+    origPtr: 24;
+    huffman_used_map: 16;
+    huffman_used_bitmaps: std::bit::popcount(huffman_used_map) * 16;
+    hufman_groups: 3;
+    
+    selectors_used: 15;
+    selector_list: 0;
+    start_huffman_length: 5;
+    delta_bit_length: 0;
+    
+    contents: 0;
+    
+    eos_magic: 48;
+    crc_end: 32;
+    pad: 0;
+};
+
+// Texture
 struct TXTR {
     Header header;
-    u8 stub[header.size];
+    PointerList pl;
+    s32 stub1[6];
+    s32 zoq_ptr;
+    s64 stub2;
+    s32 foiq_size;
+    s32 stub3[3];
+    s32 fioq_ptr;
+    s32 stub4[13];
+    s32 stub5[3];
+    u8 bz2[header.size-132];
 };
 
 struct Ac {
     u8 pad[$ % 4];
     u32 size;
-    char wav[size];
+    //Wave wav;
+    u8 stub[size];
 };
 
-
+// Audio
 struct AUDO {
     Header header;
-    s32 count;
-    s32 ptr[count];
-    Ac ac[count];
+    PointerList pl;
+    Ac ac[pl.length];
 };
 
 struct Form {
