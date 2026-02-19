@@ -7,111 +7,38 @@ import std.bit;
 import std.mem;
 
 
-struct Header {
-    char code[4];
-    s32 size;
+struct Pointer<ref_t, addr_t> {
+    ref_t *ptr: addr_t;
 };
 
-struct Pointer {
-    s32 *ptr: s32;
+struct RawString {
+    char str_value[];
 };
 
-struct PointerList {
+struct Map<K, V> {
+    K key;
+    V value;
+};
+
+struct StringContainer {
+    s32 value_len;
+    char text[value_len];
+    u8 align[4 - $ % 4];
+};
+
+struct PointerChunk<T, A> {
     s32 length;
-    Pointer ptrs[length];
-} [[color("7777cc")]];
+    Pointer<T, A> ptrs[length];
+} [[single_color]]; //[[color("7777cc")]];
 
 struct List<T> {
     s32 length;
     T data[length];
-};
+} [[single_color]];
 
-struct GEN8 {
-    Header header;
-    s64 stub1[16];
-    
-    List<s32> pl;
-    u8 stub3[64];
-    
-    u8 align[16 - $ % 16];
-};
+using rsptr = Pointer<RawString, s32>;
+using PointerList = PointerChunk<s32, s32>;
 
-struct OPTN {
-    Header header;
-    u32 stub1[15];
-    PointerList pl;
-    u8 stub[header.size - $ + addressof(header) + 8];
-};
-
-struct LANG {
-    Header header;
-    u8 stub[header.size];
-};
-
-struct EXTN {
-    Header header;
-    PointerList pl1;
-    u64 stub1[6];
-    
-    PointerList pl2;
-    u8 stub3[header.size - $ + addressof(header) + 8];
-};
-
-struct SOND {
-    Header header;
-    PointerList pl;
-    u8 stub[header.size - $ + addressof(header) + 8];
-};
-
-struct AGRP {
-    Header header;
-    PointerList pl;
-    u8 stub[header.size - $ + addressof(header) + 8];
-};
-
-struct SPRT {
-    Header header;
-    PointerList pl;
-    u8 stub[header.size - $ + addressof(header) + 8];
-};
-
-struct BGND {
-    Header header;
-    u8 stub[header.size];
-};
-
-struct PATH {
-    Header header;
-    u8 stub[header.size];
-};
-
-struct SCPT {
-    Header header;
-    PointerList pl;
-    u8 stub[header.size - $ + addressof(header) + 8];
-};
-
-struct GLOB {
-    Header header;
-    List<s32> pl;
-    u8 stub[header.size - $ + addressof(header) + 8];
-};
-
-struct SHDR {
-    Header header;
-    PointerList pl;
-    u8 stub[header.size - $ + addressof(header) + 8];
-};
-
-struct FONT {
-    Header header;
-    u8 stub[header.size];
-};
-
-struct TMLN {
-    Header header;
-    u8 stub[header.size];
-};
 
 struct AnonObj1 {
     s32;
@@ -145,7 +72,129 @@ struct Object {
     //std::print(offset);
     if(offset > 0 && offset < 65536) u8 stub3[offset];
     else break;
-} [[color("77cc66")]];
+} [[single_color]];
+
+struct AnonObj3 {
+    u16 stub[11];
+};
+
+struct ShaderObj {
+    Pointer<s32, s32> stub1;
+    s32 stub2;
+    Pointer<s32, s32> stub3[6] [[single_color]];
+    s64 stub4;
+    s32 count;
+    Pointer<s32, s32> stub5[count] [[single_color]];
+    
+    s32 stub6;
+    u8 stub7[48];
+};
+
+
+// ===================================================
+
+
+// Patterns
+struct Header {
+    char code[4];
+    s32 size;
+};
+
+struct GEN8 {
+    Header header;
+    u32 stub1;
+    Pointer<RawString, s32> s1[3];
+    u8 stub2[24];
+    Pointer<RawString, s32> s2;
+    u8 stub3[56];
+    Pointer<RawString, s32> s3;
+    u8 stub4[24];
+    
+    List<s32> ls;
+    u8 stub5[64];
+    u8 align[16 - $ % 16];
+};
+
+struct OPTN {
+    Header header;
+    u32 stub1[15];
+    List<Map<rsptr, rsptr>> pl;
+    u8 align[header.size - $ + addressof(header) + 8];
+};
+
+struct LANG {
+    Header header;
+    u8 stub[header.size];
+};
+
+struct EXTN {
+    Header header;
+    PointerList pl1;
+    u64 stub1[6];
+    
+    PointerList pl2;
+    u8 stub3[header.size - $ + addressof(header) + 8];
+};
+
+// Sound resource location?
+struct SOND {
+    Header header;
+    PointerList pl;
+    u8 stub[header.size - $ + addressof(header) + 8];
+};
+
+struct AGRP {
+    Header header;
+    PointerList pl;
+    u8 stub[header.size - $ + addressof(header) + 8];
+};
+
+struct SPRT {
+    Header header;
+    PointerList pl;
+    u8 stub[header.size - $ + addressof(header) + 8];
+};
+
+// Background resource location?
+struct BGND {
+    Header header;
+    u8 stub[header.size];
+};
+
+struct PATH {
+    Header header;
+    u8 stub[header.size];
+};
+
+struct SCPT {
+    Header header;
+    PointerList pl;
+    u8 stub[header.size - $ + addressof(header) + 8];
+};
+
+struct GLOB {
+    Header header;
+    List<s32> pl;
+    u8 align[header.size - $ + addressof(header) + 8];
+};
+
+// Shader code location
+struct SHDR {
+    Header header;
+    PointerList pl;
+    ShaderObj so[7];
+    u8 align[header.size - $ + addressof(header) + 8];
+};
+
+struct FONT {
+    Header header;
+    u8 stub[header.size];
+};
+
+struct TMLN {
+    Header header;
+    u8 stub[header.size];
+};
 
 struct OBJT {
     Header header;
@@ -208,7 +257,8 @@ struct PSYS {
 struct TPAG {
     Header header;
     PointerList pl;
-    u8 stub[header.size - $ + addressof(header) + 8];
+    AnonObj3 stub1[pl.length] [[single_color]];
+    u8 align[header.size - $ + addressof(header) + 8];
 };
 
 struct TGIN {
@@ -218,22 +268,14 @@ struct TGIN {
 
 struct FEAT {
     Header header;
-    PointerList pl;
-};
-
-struct StringContainer {
-    s32 value_len;
-    char text[value_len];
-    u8 align[4 - $ % 4];
+    PointerChunk<RawString, s32> pl;
 };
 
 // String
 struct STRG {
     Header header;
-    PointerList pl;
-    s32 a;
-    char lang_code[4];
-    StringContainer sc[pl.length - 1];
+    PointerChunk<StringContainer, s32> pl;
+    StringContainer sc[pl.length];
     u8 align[header.size - $ + addressof(header) + 8];
 };
 
@@ -320,7 +362,7 @@ struct Form {
     TPAG tpag;
     TGIN tgin;
     FEAT feat;
-    STRG strg;
+    STRG strg; break;
     TXTR txtr;
     AUDO audo;
 };

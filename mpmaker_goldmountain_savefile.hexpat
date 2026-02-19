@@ -428,7 +428,7 @@ struct Metadata {
     
     bool number_effect;
     NumberEffectType num_effect_type;
-};
+} [[single_color]];
 
 struct Collections {
     CollectionType collection_type;
@@ -438,14 +438,14 @@ struct Collections {
 struct Segment1 {
     char TS[2]; assert("TS", "TS", EQ, TS);
     u32 seg1_size;
-    Level level;
-    Assets assets;
+    Level level [[single_color]];
+    Assets assets [[single_color]];
     
     Stub3 stub3;
     
     // not a solid state drive
     s16 ssd_len;
-    SealingStoneData ssd[ssd_len];
+    SealingStoneData ssd[ssd_len] [[single_color]];
     
     DimensionToolsData dimdata;
     u8 locked_pickaxe_option; // 0xFF = unlocked
@@ -457,7 +457,7 @@ struct Segment2 {
     //u32 *seg3_ptr: u8 @ seg2_size + $;
     s16 stub5_1; assert("overflow will crash the game", 0, LE, stub5_1);
     s32 element_count; assert("too many items", 87, GE, element_count);
-    Items items[element_count];
+    Items items[element_count] [[single_color]];
 };
 
 struct Segment3 {
@@ -473,7 +473,7 @@ struct Segment4 {
     s32 seg4_size;
     s16 stub8; assert("overflow will crash the game", 0, LE, stub8);
     s16 collection_count;
-    Collections collection[collection_count];
+    Collections collection[collection_count] [[single_color]];
 };
 
 struct Data {
