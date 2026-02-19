@@ -362,8 +362,8 @@ struct Form {
     TPAG tpag;
     TGIN tgin;
     FEAT feat;
-    STRG strg; break;
-    TXTR txtr;
+    STRG strg; //break;
+    TXTR txtr; break;
     AUDO audo;
 };
 
