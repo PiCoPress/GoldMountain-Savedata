@@ -124,6 +124,7 @@ enum ItemType: u32 {
     COSTUME_VALEN   = 0xA1,
     COSTUME_GHOST   = 0xA2,
     COSTUME_SCIENCE = 0xA3,
+    COSTUME_CURSOR  = 0xC7,
 };
 
 enum CollectionType: u16 {
