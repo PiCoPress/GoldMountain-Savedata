@@ -407,10 +407,9 @@ struct Items {
 };
 
 struct Settings {
-    u8 bgm_volume; assert("BGM Volume", 100, GE, bgm_volume);
-    u8 stub7_1;
-    u8 se_volume; assert("SE Volume", 100, GE, se_volume);
-    bool stub7_2[3];
+    u16 bgm_volume; assert("BGM Volume", 100, GE, bgm_volume);
+    u16 se_volume; assert("SE Volume", 100, GE, se_volume);
+    u16 stub7_2;
     bool balance_upgrade;
     bool keep_screen_on;
     bool auto_upgrade;
