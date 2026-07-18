@@ -416,12 +416,15 @@ struct Settings {
 };
 
 struct Metadata {
-    char validity[33];
-    char account_id[8];
+    char validity[];
+    char account_id[];
     
-    char device[8]; assert("Device", "device\0\0", EQ, device);
+    // device would be "device" for offline, 
+    //  "facebook" or "google" for online?
+    char device[];
+    char maybe_account_salt[];
     u64 stub;
-    char session_id[33];
+    char session_id[];
     
     bool disabled_stick_control;
     StickControlType stick_control_type;
